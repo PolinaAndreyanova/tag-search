@@ -1,26 +1,21 @@
 <?php
-function PostDataHandler() : array {
-    $url = $_POST["url"];
-    $tag = $_POST["tag"];
-    $class = $_POST["class"];
-
-    return [$url, $tag, $class];
-}
-
 function Search(string $url) : string {
     $content = file_get_contents($url);
 
     return $content;
 }
 
-function CountTag(array $arData) : int {
-    preg_match('', $arData[0], $arMatches); // регулярное выражение!
+function PostDataHandler() : array {
+    $url = $_POST["url"];
+    $tag = $_POST["tag"];
+    $class = $_POST["class"];
 
-    return count($arMatches) - 1;
+    $urlContent = Search($url);
+
+    return [$urlContent, $tag, $class];
 }
 
-function CountTagWithClass(array $arData) : int {
-    preg_match('', $arData[0], $arMatches); // регулярное выражение!
-
-    return count($arMatches) - 1;
+function CountTag(string $regex, array $arData) : int {
+    preg_match_all($regex, $arData[0], $arMatches, PREG_SET_ORDER);
+    return count($arMatches);
 }

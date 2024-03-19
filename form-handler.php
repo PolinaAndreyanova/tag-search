@@ -5,13 +5,13 @@ define("DATABASE", "database.csv");
 
 $arData = PostDataHandler();
 
-$urlContent = Search($arData[0]);
-
 if ($arData[2]) {
-    $tagCount = CountTagWithClass($arData);
+    $regex = '/<' . $arData[1] . '[^>]*class="[^"]*' . $arData[2] . '[^"]*"[^>]*>/m';
 } else {
-    $tagCount = CountTag([$arData[0], $arData[1]]);
+    $regex = '/<' . $arData[1] . '[^>]*>/m';
 }
+
+$tagCount = CountTag($regex, $arData);
 
 $feedback = "Тег $arData[1] " . "найден $tagCount раз";
 
