@@ -15,7 +15,8 @@ function PostDataHandler() : array {
     return [$urlContent, $tag, $class];
 }
 
-function CountTag(string $regex, array $arData) : int {
-    preg_match_all($regex, $arData[0], $arMatches, PREG_SET_ORDER);
+function CountTag(string $regex, string $content) : int {
+    preg_match_all($regex, $content, $arMatches, PREG_SET_ORDER);
+
     return count($arMatches);
 }

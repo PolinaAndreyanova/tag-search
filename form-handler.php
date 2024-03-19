@@ -11,7 +11,7 @@ if ($arData[2]) {
     $regex = '/<' . $arData[1] . '[^>]*>/m';
 }
 
-$tagCount = CountTag($regex, $arData);
+$tagCount = CountTag($regex, $arData[0]);
 
 $feedback = "Тег $arData[1] " . "найден $tagCount раз";
 
