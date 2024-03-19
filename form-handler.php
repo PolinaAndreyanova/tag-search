@@ -1,8 +1,6 @@
 <?php
 include_once("library.php");
 
-define("DATABASE", "database.csv");
-
 $arData = PostDataHandler();
 
 if ($arData[2]) {
@@ -15,6 +13,7 @@ $tagCount = CountTag($regex, $arData[0]);
 
 $feedback = "Тег $arData[1] " . "найден $tagCount раз";
 
+SaveHistory([$arData[3], $arData[1], $arData[2], $tagCount]);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
